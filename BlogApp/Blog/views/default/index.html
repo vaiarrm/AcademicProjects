@@ -1,0 +1,88 @@
+{{extend 'layout.html'}}
+<h1 style="text-align:center"> Welcome To Blog ... <i>Let's Find Something For You to Read</i> </h1>
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default"
+	 href="{{=URL('create')}}">Create</a>
+        </td>
+        <td>
+                   <a class="btn btn-default"
+	 href="{{=URL('myblog')}}">My Published Blogs</a>
+        </td>
+    </tr>
+</table>
+</br>
+</br>
+{{if len(blogList)==0:}}
+        <h3 style="text-align:center">
+            <i>
+                We are really Sorry!!! No Blogs Have Been Created!! </br>
+            We Are New And <b>NEED</b> More People Like You to create Pages. </br>
+    Go Rock The Blog World - Create A New Blog!!
+            </i>
+        </h3>
+{{else:}}
+    {{from gluon.tools import prettydate}}
+    <table class = "table">
+        {{headers=True}}
+        {{for i in range(0,len(blogList)+1):}}
+        <tr>
+            <td>
+                {{if headers:}}
+                    <h4>Title</h4>
+                {{else:}}
+                    {{=blogList[i-1].title}}
+                {{pass}}
+            </td>
+            <td>
+                {{if headers:}}
+                    <h4>Created By</h4>
+                {{else:}}
+                    {{="%(first_name)s %(last_name)s" %blogList[i-1].created_by}}
+                {{pass}}
+                
+            </td>
+            <td>
+                {{if headers:}}
+                    <h4>Created On</h4>
+                {{else:}}
+                    {{=prettydate(blogList[i-1].created_on)}}
+                {{pass}}
+            </td>
+            <td>                
+                {{if headers:}}
+                    <h4>Action</h4>
+                {{else:}}
+                     {{if(auth.user):}}
+                            <a class="btn btn-default"
+                            href="{{=URL('readlogin',args=blogList[i-1].id)}}">Read</a>
+                    {{else:}}
+                        <a class="btn btn-default"
+                           href="{{=URL('readnotlogin',args=blogList[i-1].id)}}">Read</a>
+                    {{pass}}
+                {{pass}}
+            </td>
+        </tr>
+                {{if headers:}}
+                    {{headers = False}}
+                {{pass}}
+        {{pass}}
+    </table>
+{{pass}}
+</br>
+</br>
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default"
+             href="{{=URL('create')}}">Create</a>
+        </td>
+        <td>
+                   <a class="btn btn-default"
+                    href="{{=URL('myblog')}}">My Published Blogs</a>
+        </td>
+    </tr>
+</table>
+</br>
+</br>

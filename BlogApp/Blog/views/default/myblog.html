@@ -1,0 +1,78 @@
+{{extend 'layout.html'}}
+
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default"
+             href="{{=URL('create')}}">Create</a>
+        </td>
+        <td>
+                   <a class="btn btn-default"
+                    href="{{=URL('myblog')}}">My Published Blogs</a>
+        </td>
+    </tr>
+</table>
+</br>
+</br>
+{{if len(blogList)==0:}}
+        <h3 style="text-align:center">
+            <i>
+                You Have Not Created A Blog.</br>
+                Go Tell World About Yourself!!!!   
+            </i>
+        </h3>
+{{else:}}
+    {{from gluon.tools import prettydate}}
+    <table class = "table">
+        {{headers=True}}
+        {{for i in range(0,len(blogList)+1):}}
+        <tr>
+            <td>
+                                {{if headers:}}
+                    <h4>Title</h4>
+                {{else:}}
+                    {{=blogList[i-1].title}}
+                {{pass}}
+            </td>
+            <td>
+                {{if headers:}}
+                    <h4>Created On</h4>
+                {{else:}}
+                    {{=prettydate(blogList[i-1].created_on)}}
+                {{pass}}
+                
+            </td>
+            <td>                
+                {{if headers:}}
+                    <h4>Action</h4>
+                {{else:}}
+                    <a class="btn btn-default"
+                    href="{{=URL('readlogin',args=blogList[i-1].id)}}">Read</a>
+                    <a class="btn btn-default"
+                    href="{{=URL('editpage',args=blogList[i-1].id)}}">Edit</a>
+                    <a class="btn btn-default"
+                    href="{{=URL('deletepage',args=blogList[i-1].id)}}">Delete</a>
+                {{pass}}
+                 
+            </td>
+        </tr>
+            {{if headers:}}
+                {{headers = False}}
+            {{pass}}
+        {{pass}}
+    </table>
+{{pass}}
+</br>
+</br>
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default"
+             href="{{=URL('create')}}">Create</a>
+        </td>
+        <td>
+                   <a class="btn btn-default"
+                    href="{{=URL('myblog')}}">My Published Blogs</a>
+        </td>
+    </tr>
+</table>
