@@ -1,0 +1,86 @@
+{{extend 'layout.html'}}
+<h1 style="text-align:center"> <i>Drawing App</i> </h1>
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default" href="{{=URL('drawNewImage')}}">Draw Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('uploadImages')}}">Upload Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('myImages')}}">My Images</a>
+        </td>
+    </tr>
+</table>
+</br>
+{{if len(imageList)==0:}}
+        <h3 style="text-align:center">
+            <i>
+                We are really Sorry!!! No Images Have Been Created!! </br>
+            We Are New And <b>NEED</b> More People Like You to create  <b>Something Beautiful</b>. </br>
+            Create A New Image!!
+            </i>
+        </h3>
+{{else:}}
+    {{from gluon.tools import prettydate}}
+    <table class = "table">
+        {{headers=True}}
+        {{for i in range(0,len(imageList)+1):}}
+        <tr>
+            <td>
+                {{if headers:}}
+                    <h4>Image Title</h4>
+                {{else:}}
+                    {{=imageList[i-1].ImageTitle}}
+                {{pass}}
+            </td>
+            <td>
+                {{if headers:}}
+                    <h4>Created By</h4>
+                {{else:}}
+                    {{="%(first_name)s %(last_name)s" %imageList[i-1].created_by}}
+                {{pass}}    
+            </td>
+            <td>
+                {{if headers:}}
+                    <h4>Created On</h4>
+                {{else:}}
+                    {{=prettydate(imageList[i-1].created_on)}}
+                {{pass}}
+            </td>
+            <td>                
+                {{if headers:}}
+                    <h4>Action</h4>
+                {{else:}}
+                     {{if(auth.user):}}
+                            <a class="btn btn-default"
+                            href="{{=URL('viewLogin',args=imageList[i-1].id)}}">View</a>
+                    {{else:}}
+                        <a class="btn btn-default"
+                           href="{{=URL('viewNotlogin',args=imageList[i-1].id)}}">View</a>
+                    {{pass}}
+                {{pass}}
+            </td>
+            </tr>
+                {{if headers:}}
+                    {{headers = False}}
+                {{pass}}
+        {{pass}}
+    </table>       
+{{pass}}
+</br>
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default" href="{{=URL('drawNewImage')}}">Draw Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('uploadImages')}}">Upload Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('myImages')}}">My Images</a>
+        </td>
+    </tr>
+</table>
+</br>

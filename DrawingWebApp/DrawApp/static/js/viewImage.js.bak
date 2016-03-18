@@ -1,0 +1,7 @@
+function myCanvas() {
+    alert("View Function");
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("canvasImage");
+    ctx.drawImage(img,0,0,300,300);
+}

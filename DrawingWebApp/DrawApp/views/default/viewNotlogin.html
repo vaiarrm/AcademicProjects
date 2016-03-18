@@ -1,0 +1,66 @@
+{{extend 'layout.html'}}
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default" href="{{=URL('drawNewImage')}}">Draw Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('uploadImages')}}">Upload Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('myImages')}}">My Images</a>
+        </td>
+    </tr>
+</table>
+</br>
+<h1 style="text-align:center"> <i>{{=image.ImageTitle}}</i> </h1>
+</br>
+<center>
+    {{if "," in image.ImageCanvas[:50]:}} 
+        <img id="canvasImage" width="400" height="400" src="{{=image.ImageCanvas}}" style='border:1px solid #000000'/>
+    {{else:}}
+        <img id="canvasImage" width="400" height="400" src="{{=URL('download', args=image.ImageUpload)}}" style='border:1px solid #000000' />
+    {{pass}}
+</center>
+</br>
+<h3>Comments</h3>
+{{if len(imageComments):}}
+    {{from gluon.tools import prettydate}}
+    {{for post in imageComments:}}
+        <p>{{=db.auth_user[post.created_by].first_name}}  says 
+            <i>
+                   {{=post.body}}
+            </i>
+            {{=prettydate(post.created_on)}}
+        </p>
+    {{pass}}
+{{else:}}
+    <p>
+        <i>
+            No Comments For This Image!!</br>
+        </i>
+    </p>
+{{pass}}
+<table>
+    <tr>
+        <td>
+                <a class="btn btn-default" href="{{=URL('viewLogin',args=image.id)}}">Comment</a>
+        </td>
+    </tr>
+</table>
+</br>
+</br>
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default" href="{{=URL('drawNewImage')}}">Draw Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('uploadImages')}}">Upload Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('myImages')}}">My Images</a>
+        </td>
+    </tr>
+</table>
+</br>

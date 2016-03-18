@@ -1,0 +1,78 @@
+{{extend 'layout.html'}}
+<script type="text/javascript" src="/DrawApp/static/js/paper.js"></script>
+<script type="text/javascript" src = "/DrawApp/static/js/newImage.js"></script>
+<script type="text/javascript" canvas="myCanvas" src ="/DrawApp/static/js/newDrawing.js"></script> 
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default" href="{{=URL('drawNewImage')}}">Draw Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('uploadImages')}}">Upload Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('myImages')}}">My Images</a>
+        </td>
+    </tr>
+</table>
+</br>
+<div class="container-fluid">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <h4> <i>How to Draw?</i> </h4>
+        <ol>
+            <li>To draw click in the canvas and drag the mouse.</li>
+            <li>The default color is <em>black</em> and brush width is </em>1</em>.</li>
+            <li>To change brush width press key <em>2</em> to <em>9</em> while drawing.</li>
+            <li>To change color press one of the following keys for the specific color while dragging mouse:
+                <ul>
+                    <li>R : Red</li>
+                    <li>B : Blue</li>
+                    <li>Y : Yellow</li>
+                    <li>G : Green</li>
+                </ul>
+            </li>
+            <li>To erase keep pressing the key E while dragging the mouse.</li>
+        </ol>
+    </div>
+</div>
+</br>
+<form class="form-horizontal" role="form" method = "post" onsubmit = "saveme()" name="drawForm">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="imageFormTitle">Image Title:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="imageFormTitle" name = "imageFormTitle" placeholder="Image Title"/>
+            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label><input type="radio" id="imageFormPermission" name = "imageFormPermission" value="True"/>Share</label>
+                <label><input type="radio" id="imageFormPermission" name = "imageFormPermission" value="False"/>Private</label>
+            </div>
+        </div>
+    </div>
+    <input  type = "hidden" name = "imageFormBlob" id ="imageFormBlob" /> 
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+                <input id = "save" type="submit" onclick ="saveme()" class="btn btn-default" value = "Save"/>
+        </div>
+    </div>
+</form>
+</br>
+<table>
+    <tr>
+        <td>
+            <a class="btn btn-default" href="{{=URL('drawNewImage')}}">Draw Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('uploadImages')}}">Upload Image</a>
+        </td>
+        <td>
+            <a class="btn btn-default" href="{{=URL('myImages')}}">My Images</a>
+        </td>
+    </tr>
+</table>
+</br>
