@@ -1,0 +1,1 @@
+#{author: Vaibhav SharmaDate: 10/08/2016Description: This file contains all the global variables used in the applicaiton#}  global weights # Stores weigths for the network  global biases # Stores biases for the network  global numberOfLayers #Stores number of layers in the network  global attained100Accuracy # Tells Application that 100% Accuracy is attained

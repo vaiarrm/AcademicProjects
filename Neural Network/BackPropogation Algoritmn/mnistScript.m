@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/08/2016#Description: Script file for mnistTrn.mat file##clear;clc;load mnistTrn.matlayerVector = [784,40,10]numEpoch = 100batchSize = 10eta = 3.0start(trn,trnAns,layerVector,numEpoch,batchSize,eta)

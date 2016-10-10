@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/08/2016#Description: Script file for iris.csv file##clear;clc;load iris.csv;iris = iris';input = iris(1:4,:);target = iris(5:7,:);layerVector = [4,20,3];numEpoch = 1000;batchSize = 10;eta = 0.1;start(input,target,layerVector,numEpoch,batchSize,eta);

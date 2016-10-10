@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/08/2016#Description: Script file for xor.csv file##clear;clc;load xor.csv;xor = xor';input = xor(1:2,:);target = xor(3,:);layerVector = [2,2,3,1];numEpoch = 1000;batchSize = 1;eta = 0.1;start(input,target,layerVector,numEpoch,batchSize,eta);
