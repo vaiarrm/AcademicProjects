@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/08/2016#Description: Calculates partial derivatives#Output: Returns the value of partial derivatives##function [pdRet] = cost_derivative(out_activations,y)  pdRet = out_activations - y;endfunction

@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/08/2016#Description: Calculates the sigmoid value of the incoming vector z#Output: Returns the value of sigmoid neuron##function sigRet = sigmoid(z,currLayer)  sigRet = 1.0 ./ (1.0 +exp(-z));endfunction

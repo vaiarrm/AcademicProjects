@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/22/2016#Description: Calculates the last value of delta#Output: Returns the last value of delta##function deltaval = deltaValForLogAndCross(aLast,target,zLast)  deltaval = cost_derivative(aLast,target);endfunction

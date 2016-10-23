@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/22/2016#Description: Calculates the correct value using round function#Output: Returns the correct value##function corrVal = round_correctCal(aLast,target)  roundedALast = round(aLast);  corrVal = sum(all(target==roundedALast,1),2);endfunction

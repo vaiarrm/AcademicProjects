@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/22/2016#Description: Calculates the firstorder derivative of tanh of the incoming vector z#Output: Returns the value of sigmoid neuron##function tanhDRet = tanhTransfer_prime(z,currLayer)  tanhDRet = t = 1 - tanh(z) .^2;endfunction

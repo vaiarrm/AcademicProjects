@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/22/2016#Description: Calculates the reLu value of the incoming vector z#Output: Returns the value of relu##function r = relu(z)    r = max(0,z);end

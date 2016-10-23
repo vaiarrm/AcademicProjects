@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/22/2016#Description: Calculates the softmax transfer function for Z#Output: Returns the value of softmax function##function softRet = sigmoid(z,currLayer)  global numberOfLayers    if currLayer == numberOfLayers     softRet = exp(z) ./ sum(exp(z)) ;  else    softRet = sigmoid(z,currLayer)  ;  endif   endfunction

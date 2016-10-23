@@ -1,0 +1,1 @@
+###author: Vaibhav Sharma#Date: 10/22/2016#Description: Calculates the tanh value of the incoming vector z#Output: Returns the value of sigmoid neuron##function tanhRet = tanhTransfer(z,currLayer)  tanhRet = (1 + tanh(z/2)) / 2 ;endfunction
