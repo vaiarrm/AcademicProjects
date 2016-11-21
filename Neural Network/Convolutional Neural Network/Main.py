@@ -8,6 +8,7 @@
 import Constants
 import DataLoader
 from ApplicationExceptions import TooManyInputException
+import Network
 from Validations import Validations
 
 MAX_INPUT_ERROR_ALLOWED = 10
@@ -24,7 +25,10 @@ def main():
     dataInfo = data.getDataInfo()
 
     # Gathering Information about Convolutional Layers
-    numConvLayers = __getNumberOfConvultaitonalLayers(numInputErrors)
+    # Though code can handle multiple Convoluted Layers, running for just 1 as of now
+    # If you want to run for multiple remove the next line and uncomment the method call
+    numConvLayers = 1
+    #numConvLayers = __getNumberOfConvultaitonalLayers(numInputErrors)
     cnvLayers = []
 
     for i in range(numConvLayers):
@@ -60,8 +64,15 @@ def main():
         fullLayers.append(hiddenLayerSize)
 
     NNlayers = [cnvLayers,fullLayers]
-    print NNlayers
+    # Hyper Parameters
+    numEpochs = 1
+    eta = 0.3
+    lmbda = 5
 
+    n = Network.Network(NNlayers, data, numEpochs, eta, lmbda)
+    print "Network Created Sucessfully"
+    result = n.run()
+    print "Done!!"
 
 def __getDataName(numInputErrors):
     """
@@ -80,6 +91,15 @@ def __getDataName(numInputErrors):
             data = DataLoader.MnistDataLoader()
             break
         elif dataChoice == 2:
+            data = DataLoader.MnistRotated()
+            break
+        elif dataChoice == 3:
+            data = DataLoader.MnistBackground()
+            break
+        elif dataChoice == 4:
+            data = DataLoader.MnistRandomBackground()
+            break
+        elif dataChoice == 5:
             data = DataLoader.Cifar10DataLoader()
             break
         else:
