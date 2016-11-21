@@ -23,7 +23,7 @@ inputNoOfFullHiddenlLayersError = 'Invalid Number. Should be integer with value 
 inputConvlutionalLayerNum = 'Information for Convulational Layer '
 inputFullHiddenLayerNum = 'Information for Full Hidden Layer '
 
-inputLocalReceptiveDim = 'Enter Dimension For Local Receptive Field 3/5/7 '
+inputLocalReceptiveDim = 'Enter Dimension For Local Receptive Field (3 / 5 / 7) '
 inputLocalReceptiveDimError = 'Incorrect Dimension '
 
 inputStride = 'Enter Stride '

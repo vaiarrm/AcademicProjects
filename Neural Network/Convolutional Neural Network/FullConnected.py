@@ -121,32 +121,34 @@ class fullconnected(object):
     def getFirstWeight(self):
         return self.__weights[0]
 
-    def feedforward2(self, data):
-        """
-        Feedforward for validation and testing
-        :param data:
-        :return: error and boolean for correctness
-        """
-        x = data[0]
-        y = data[1]
-        activation = x
-        i = 0
-        lenW = len(self.__weights) - 1
-        act = None
-        for b, w in zip(self.__biases, self.__weights):
-            if i == lenW:
-                act = self.__lastActivation
-            else:
-                act = self.__activation
-            i += 1
-            z = np.dot(w, activation) + np.repeat(b, x.shape[1], 1)
-            activation = act.actFunction(z)
-        error = self.__lossFun.costFunction(activation,y)
-        error = np.sum(error)
-        correct = 0
-        for k in range(activation.shape[1]):
-            a = activation[:, k]
-            yd = y[:, k]
-            if act.correctCalc(a, yd):
-                correct += 1
-        return error, correct
+    # Below code is testing efficiency
+
+    # def feedforward2(self, data):
+    #     """
+    #     Feedforward for validation and testing
+    #     :param data:
+    #     :return: error and boolean for correctness
+    #     """
+    #     x = data[0]
+    #     y = data[1]
+    #     activation = x
+    #     i = 0
+    #     lenW = len(self.__weights) - 1
+    #     act = None
+    #     for b, w in zip(self.__biases, self.__weights):
+    #         if i == lenW:
+    #             act = self.__lastActivation
+    #         else:
+    #             act = self.__activation
+    #         i += 1
+    #         z = np.dot(w, activation) + np.repeat(b, x.shape[1], 1)
+    #         activation = act.actFunction(z)
+    #     error = self.__lossFun.costFunction(activation,y)
+    #     error = np.sum(error)
+    #     correct = 0
+    #     for k in range(activation.shape[1]):
+    #         a = activation[:, k]
+    #         yd = y[:, k]
+    #         if act.correctCalc(a, yd):
+    #             correct += 1
+    #     return error, correct

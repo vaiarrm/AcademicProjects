@@ -216,61 +216,59 @@ class Network(object):
         plt.legend(loc='best')
         plt.show()
 
-
-
         return self.__train_acc_list, self.__valid_acc_list, self.__test_acc_list, self.__train_err_list,\
                self.__valid_err_list, self.__test_err_list
 
 
 
+    # Below code if experimenting with different approaches
 
-
-    def speedTestFeedForward2(self):
-        """
-            Testing for Efficinecy
-        :return:
-        """
-        test_data = self.__data[2][:500]
-        fin = None
-        fout = None
-        first = True
-        for item in test_data:
-            test_input = item[0]
-            test_output = item[1]
-            if not first:
-                fout = np.hstack((fout, test_output))
-            else:
-                fout = test_output
-            for conv in self.__convLayer:
-                conv.convolve(test_input)
-                test_input = conv.maxPooling()
-
-            tis = test_input.shape
-            t = tis[0] * tis[1] * tis[2]
-            test_input = test_input.reshape((t, 1))
-            if not first:
-                fin = np.hstack((fin, test_input))
-            else:
-                fin = test_input
-            first = False
-        self.__fullLayers.feedforward2((fin,fout))
-
-    def speedTestFeedForward(self):
-        """
-            Testing for efficiency
-        :return:
-        """
-        test_data = self.__data[2][:500]
-        for item in test_data:
-            test_input = item[0]
-            test_output = item[1]
-
-            for conv in self.__convLayer:
-                conv.convolve(test_input)
-                test_input = conv.maxPooling()
-
-            tis = test_input.shape
-            t = tis[0] * tis[1] * tis[2]
-            test_input = test_input.reshape((t, 1))
-            fullLayerInput = test_input, test_output
-            self.__fullLayers.feedforward(fullLayerInput)
+    # def speedTestFeedForward2(self):
+    #     """
+    #         Testing for Efficinecy
+    #     :return:
+    #     """
+    #     test_data = self.__data[2][:500]
+    #     fin = None
+    #     fout = None
+    #     first = True
+    #     for item in test_data:
+    #         test_input = item[0]
+    #         test_output = item[1]
+    #         if not first:
+    #             fout = np.hstack((fout, test_output))
+    #         else:
+    #             fout = test_output
+    #         for conv in self.__convLayer:
+    #             conv.convolve(test_input)
+    #             test_input = conv.maxPooling()
+    #
+    #         tis = test_input.shape
+    #         t = tis[0] * tis[1] * tis[2]
+    #         test_input = test_input.reshape((t, 1))
+    #         if not first:
+    #             fin = np.hstack((fin, test_input))
+    #         else:
+    #             fin = test_input
+    #         first = False
+    #     self.__fullLayers.feedforward2((fin,fout))
+    #
+    # def speedTestFeedForward(self):
+    #     """
+    #         Testing for efficiency
+    #     :return:
+    #     """
+    #     test_data = self.__data[2][:500]
+    #     for item in test_data:
+    #         test_input = item[0]
+    #         test_output = item[1]
+    #
+    #         for conv in self.__convLayer:
+    #             conv.convolve(test_input)
+    #             test_input = conv.maxPooling()
+    #
+    #         tis = test_input.shape
+    #         t = tis[0] * tis[1] * tis[2]
+    #         test_input = test_input.reshape((t, 1))
+    #         fullLayerInput = test_input, test_output
+    #         self.__fullLayers.feedforward(fullLayerInput)

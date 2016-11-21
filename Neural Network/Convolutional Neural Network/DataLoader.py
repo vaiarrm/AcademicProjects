@@ -6,7 +6,7 @@
 #######################################################################################################################
 
 # External Libraries
-
+from __future__ import  division
 import cPickle
 import gzip
 import numpy as np
