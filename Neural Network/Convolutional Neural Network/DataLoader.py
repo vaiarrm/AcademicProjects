@@ -41,7 +41,8 @@ class MnistDataLoader(Data):
         return self.__dataName
 
     def readFile(self):
-        f = gzip.open('data/mnist.pkl.gz', 'rb')
+        path = os.path.join(os.getcwd(),"data","mnist.pkl.gz") #'data/mnist.pkl.gz'
+        f = gzip.open(path, 'rb')
         training_data, validation_data, test_data = cPickle.load(f)
         return self.__processData(training_data,validation_data,test_data)
         f.close()
@@ -85,9 +86,12 @@ class MnistRandomBackground(Data):
         return self.__dataName
 
     def readFile(self):
-        path = os.getcwd() + '/data/mnist_background_random'
-        trainFilePath = path + "/mnist_background_random_train.amat"
-        testFilePath = path + "/mnist_background_random_test.amat"
+        # path = os.getcwd() + '/data/mnist_background_random'
+        # trainFilePath = path + "/mnist_background_random_train.amat"
+        # testFilePath = path + "/mnist_background_random_test.amat"
+
+        trainFilePath = os.path.join(os.getcwd(), "data", "mnist_background_random","mnist_background_random_train.amat")
+        testFilePath = os.path.join(os.getcwd(), "data", "mnist_background_random", "mnist_background_random_test.amat")
 
         train = np.loadtxt(trainFilePath)
         numRows = len(train)
@@ -155,9 +159,12 @@ class MnistBackground(Data):
         return self.__dataName
 
     def readFile(self):
-        path = os.getcwd() + '/data/mnist_background_images'
-        trainFilePath = path + "/mnist_background_images_train.amat"
-        testFilePath = path + "/mnist_background_images_test.amat"
+        # path = os.getcwd() + '/data/mnist_background_images'
+        # trainFilePath = path + "/mnist_background_images_train.amat"
+        # testFilePath = path + "/mnist_background_images_test.amat"
+
+        trainFilePath = os.path.join(os.getcwd(), "data", "mnist_background_images","mnist_background_images_train.amat")
+        testFilePath = os.path.join(os.getcwd(), "data", "mnist_background_images", "mnist_background_images_test.amat")
 
         train = np.loadtxt(trainFilePath)
         numRows = len(train)
@@ -225,9 +232,13 @@ class MnistRotated(Data):
         return self.__dataName
 
     def readFile(self):
-        path = os.getcwd() + '/data/mnist_rotation_new'
-        trainFilePath = path + "/mnist_all_rotation_normalized_float_train_valid.amat"
-        testFilePath = path + "/mnist_all_rotation_normalized_float_test.amat"
+        # path = os.getcwd() + '/data/mnist_rotation_new'
+        # trainFilePath = path + "/mnist_all_rotation_normalized_float_train_valid.amat"
+        # testFilePath = path + "/mnist_all_rotation_normalized_float_test.amat"
+
+        trainFilePath = os.path.join(os.getcwd(), "data", "mnist_rotation_new", "mnist_all_rotation_normalized_float_train_valid.amat")
+        testFilePath = os.path.join(os.getcwd(), "data", "mnist_rotation_new", "mnist_all_rotation_normalized_float_test.amat")
+
 
         train = np.loadtxt(trainFilePath)
         numRows = len(train)
@@ -294,7 +305,7 @@ class Cifar10DataLoader3Dim(Data):
         return self.__dataName
 
     def readFile(self):
-        dirPath = 'data/mnist_rotation_new'
+        dirPath = os.path.join(os.getcwd(), "data", "cifar10")
         fNames = os.listdir(dirPath)
         training_data = []
         validation_data = []
@@ -359,7 +370,7 @@ class Cifar10DataLoader(Data):
         return self.__dataName
 
     def readFile(self):
-        dirPath = 'data/mnist_rotation_new'
+        dirPath = os.path.join(os.getcwd(), "data", "cifar10")
         fNames = os.listdir(dirPath)
         training_data = []
         validation_data = []
