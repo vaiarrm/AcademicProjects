@@ -79,7 +79,7 @@ class convolutional(object):
         del data
         return self.__convAOutput
 
-    def backpropogate(self, deltas, prevWeight, eta, lmbda, n, isLastConvLayer=False):
+    def backpropogate(self, deltas, prevWeight, eta, n, lmbda, isLastConvLayer=False):
         """
             Backpropogation layer
         :param deltas:

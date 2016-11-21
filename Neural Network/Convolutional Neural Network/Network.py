@@ -112,10 +112,10 @@ class Network(object):
                 delta = delta.reshape(tis)
                 c = self.__convLayer[-1]
 
-                delta, preWt = c.backpropogate(delta, self.__fullLayers.getFirstWeight(), self.__eta, self.__lmbda, len(train_data), True)
+                delta, preWt = c.backpropogate(delta, self.__fullLayers.getFirstWeight(), self.__eta, len(train_data), self.__lmbda, True)
                 for k in range(-1, -1 * len(self.__convLayer) - 1, -1):
                     c = self.__convLayer[k]
-                    delta, preWt = c.backpropogate(delta, preWt, self.__eta, self.__lmbda, len(train_data), False)
+                    delta, preWt = c.backpropogate(delta, preWt, self.__eta, len(train_data), self.__lmbda,False)
 
 
             self.__train_acc_list.append(train_correct / len(train_data))

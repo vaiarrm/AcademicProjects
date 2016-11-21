@@ -6,7 +6,7 @@
 #######################################################################################################################
 
 # External Libraries
-from __future__ import  division
+from __future__ import division
 import cPickle
 import gzip
 import numpy as np
@@ -41,6 +41,8 @@ class MnistDataLoader(Data):
         return self.__dataName
 
     def readFile(self):
+        print "Processing File", self.getDataName()
+
         path = os.path.join(os.getcwd(),"data","mnist.pkl.gz") #'data/mnist.pkl.gz'
         f = gzip.open(path, 'rb')
         training_data, validation_data, test_data = cPickle.load(f)
@@ -90,6 +92,7 @@ class MnistRandomBackground(Data):
         # trainFilePath = path + "/mnist_background_random_train.amat"
         # testFilePath = path + "/mnist_background_random_test.amat"
 
+        print "Processing File", self.getDataName()
         trainFilePath = os.path.join(os.getcwd(), "data", "mnist_background_random","mnist_background_random_train.amat")
         testFilePath = os.path.join(os.getcwd(), "data", "mnist_background_random", "mnist_background_random_test.amat")
 
@@ -166,6 +169,8 @@ class MnistBackground(Data):
         trainFilePath = os.path.join(os.getcwd(), "data", "mnist_background_images","mnist_background_images_train.amat")
         testFilePath = os.path.join(os.getcwd(), "data", "mnist_background_images", "mnist_background_images_test.amat")
 
+        print "Processing File", self.getDataName()
+
         train = np.loadtxt(trainFilePath)
         numRows = len(train)
         numCols = len(train[0])
@@ -232,6 +237,7 @@ class MnistRotated(Data):
         return self.__dataName
 
     def readFile(self):
+        print "Processing File", self.getDataName()
         # path = os.getcwd() + '/data/mnist_rotation_new'
         # trainFilePath = path + "/mnist_all_rotation_normalized_float_train_valid.amat"
         # testFilePath = path + "/mnist_all_rotation_normalized_float_test.amat"
