@@ -2,7 +2,7 @@
 # FILE: Main.py
 # AUTHOR : Vaibhav Sharma
 # DATE: 11/08/2016
-# DESCRIPTION:
+# DESCRIPTION: UI File
 #######################################################################################################################
 
 import Constants
@@ -27,8 +27,8 @@ def main():
     # Gathering Information about Convolutional Layers
     # Though code can handle multiple Convoluted Layers, running for just 1 as of now
     # If you want to run for multiple remove the next line and uncomment the method call
-    numConvLayers = 1
-    #numConvLayers = __getNumberOfConvultaitonalLayers(numInputErrors)
+    #numConvLayers = 1
+    numConvLayers = __getNumberOfConvultaitonalLayers(numInputErrors)
     cnvLayers = []
 
     for i in range(numConvLayers):
