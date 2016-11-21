@@ -279,7 +279,7 @@ class MnistRotated(Data):
 
         return training_data, validation_data, test_data
 
-class Cifar10DataLoader(Data):
+class Cifar10DataLoader3Dim(Data):
     """
         Loads Cifar 10 dataset
     """
@@ -338,6 +338,82 @@ class Cifar10DataLoader(Data):
             y = np.reshape(y, (32, 32, 3))
             td_data.append(y)
         return zip(td_data,td_result)
+
+    def __vectorizedResult(self, target):
+        res = np.zeros((10,1))
+        res[target] = 1
+        return res
+
+class Cifar10DataLoader(Data):
+    """
+        Loads Cifar 10 dataset
+    """
+
+    def __init__(self):
+        self.__dataName = "CIFAR 10"
+
+    def getDataName(self):
+        """
+        :return: Name of Data Set
+        """
+        return self.__dataName
+
+    def readFile(self):
+        dirPath = 'data/mnist_rotation_new'
+        fNames = os.listdir(dirPath)
+        training_data = []
+        validation_data = []
+        test_data = []
+        for f in fNames:
+            absPath = os.path.join(dirPath, f)
+            if f == 'data_batch_5': # validation data
+                validation_data += self.__readFile(absPath)
+            elif f == 'test_batch': # test data
+                test_data += self.__readFile(absPath)
+            elif 'data_batch' in f:
+                training_data += self.__readFile(absPath)
+
+        return training_data, validation_data, test_data
+
+    def getDataInfo(self):
+        return [32, 32, 1]
+
+    def __readFile(self,fileName):
+        print "loading ", fileName
+        fo = open(fileName, 'rb')
+        dict = cPickle.load(fo)
+        fo.close()
+        return self.__processData(dict)
+
+    def __processData(self, dict):
+        data = dict['data']
+        labels = dict['labels']
+        td_result = []
+        td_data = []
+        for i in xrange(len(labels)):
+            td_result.append(self.__vectorizedResult(labels[i]))
+            x = data[i]
+            y = []
+            for j in xrange(1024):
+                y.append(x[j])
+                y.append(x[j+1024])
+                y.append(x[j+2048])
+
+            y = np.array(y)
+            y = np.reshape(y, (32, 32, 3))
+            td_data.append(y)
+        temp=self.__convertToOneDim(td_data)
+        return zip(temp,td_result)
+
+    def __convertToOneDim(self,data):
+        tempLst = []
+        for item in data:
+            temp = np.zeros((32,32,1))
+            for i in xrange(32):
+                for j in xrange(32):
+                    temp[i][j][0] = (item[i][j][0] + item[i][j][1] + item[i][j][2]) / 3
+                    tempLst.append(temp)
+        return tempLst
 
     def __vectorizedResult(self, target):
         res = np.zeros((10,1))

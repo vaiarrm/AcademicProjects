@@ -11,8 +11,8 @@ applicationAssumptions2 = '3. Dimension of Output layer before pooling = (W - F 
 applicationAssumptions3 = ''
 applicationAssumptions = applicationAssumptions1 + applicationAssumptions2 + applicationAssumptions3
 
-inputDataChoice = 'Enter Data Set Choice\n\t1: MNIST Data\n\t2: CIFAR-10 Data\n'
-inputDataChoiceError = 'Invalid Choice. Please enter 1 or 2 '
+inputDataChoice = 'Enter Data Set Choice\n\t1: MNIST Data\n\t2: MNIST Rotated\n\t3: MNIST with Background\n\t4: MNIST with Random Background\n\t5: CIFAR-10 Data\n'
+inputDataChoiceError = 'Invalid Choice. Please enter 1 to 5 '
 
 inputNoOfConvolutionalLayers = 'Enter Number of Convolutional Layers '
 inputNoOfConvolutionalLayersError = 'Invalid Number. Should be integer with value greater than equal to 1 '
